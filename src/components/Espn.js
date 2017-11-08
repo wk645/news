@@ -4,7 +4,7 @@ import { Grid } from 'semantic-ui-react'
 
 const ESPN = (props) => {
 
-	let news = props.news.map((info, index) => <Article news={info} key={index}/>)
+	let news = props.espn.map((info, index) => <Article news={info} key={index}/>)
 
 	return (
 	<center><div>
