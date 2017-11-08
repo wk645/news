@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import Home from './components/Home';
 import ESPN from './components/Espn'
+import Navbar from './components/Navbar';
+import { Route } from 'react-router-dom';
 
 class App extends Component {
   constructor() {
@@ -25,8 +27,9 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Home />
-        <ESPN news={this.state.news} />
+        <Navbar />
+        <Route exact path='/' component={Home} />
+        <Route exact path='/espn' render={() => <ESPN news={this.state.news} />}/>
       </div>
     );
   }
