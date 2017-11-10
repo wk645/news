@@ -58,3 +58,7 @@ div.ui.compact.floating.message.homeP {
 	font-size: 15px;
 	font-family: 'Alegreya', serif;
 }
+
+div.ui.search.selection.dropdown {
+	margin-top: 30px;
+}
