@@ -11,7 +11,7 @@ const CnnArticle = (props) => {
 
 	return (
 		<Grid.Column>
-			<Segment>
+			<Segment color="red">
 			<p className='newsTitle' onClick={handleClick}>{props.news.title}</p>
 			<p className='description'>{props.news.description}</p>
 			<center><img src={props.news.urlToImage} alt='' /></center>

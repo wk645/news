@@ -5,6 +5,8 @@ import ESPN from './components/Espn'
 import Navbar from './components/Navbar';
 import { Route } from 'react-router-dom';
 import CNN from './components/Cnn'
+import Buzzfeed from './components/buzzfeed/Buzzfeed'
+import Custom from './components/Custom'
 
 class App extends Component {
   constructor() {
@@ -12,13 +14,15 @@ class App extends Component {
 
     this.state = {
       espn: [],
-      cnn: []
+      cnn: [],
+      buzzfeed: []
     }
   }
 
   componentDidMount() {
-    this.fetchEspn()
-    this.fetchCNN()
+    this.fetchEspn();
+    this.fetchCNN();
+    this.fetchBuzzFeed();
   }
 
   fetchEspn() {
@@ -33,6 +37,12 @@ class App extends Component {
     .then(data => this.setState({ cnn: data.articles }))
   }
 
+  fetchBuzzFeed() {
+    fetch('https://newsapi.org/v1/articles?source=buzzfeed&sortBy=top&apiKey=6c3c0586700d42f186c867bfd45f05e1')
+    .then(res => res.json())
+    .then(data => this.setState({ buzzfeed: data.articles }))
+  }
+
   render() {
     return (
       <div>
@@ -40,6 +50,8 @@ class App extends Component {
         <Route exact path='/' component={Home} />
         <Route exact path='/espn' render={() => <ESPN espn={this.state.espn} />}/>
         <Route exact path='/cnn' render={() => <CNN cnn={this.state.cnn} />} /> 
+        <Route exact path='/buzzfeed' render={() => <Buzzfeed buzzfeed={this.state.buzzfeed} />} />
+        <Route exact path='/custom' render={() => <Custom /> }/>
       </div>
     );
   }
