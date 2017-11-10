@@ -47,10 +47,17 @@ img {
 	color: blue;
 }*/
 
-.ESPNTitle {
+.sourceTitle {
 	text-align: center;
 	font-family: 'Spectral SC', serif;
 	font-size: 50px;
+}
+
+.customTitle {
+	text-align: center;
+	font-family: 'Spectral SC', serif;
+	font-size: 50px;
+	margin-bottom: 10px;
 }
 
 div.ui.compact.floating.message.homeP {
@@ -60,5 +67,6 @@ div.ui.compact.floating.message.homeP {
 }
 
 div.ui.search.selection.dropdown {
-	margin-top: 30px;
+	margin-top: 0px;
+	margin-bottom: 10px;
 }

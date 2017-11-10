@@ -8,7 +8,7 @@ const ESPN = (props) => {
 
 	return (
 	<center><div>
-		<p className="ESPNTitle">ESPN</p>
+		<p className="sourceTitle">ESPN</p>
 		<Grid columns={2}>
 			<Grid.Row>
 					{news}

@@ -24,7 +24,6 @@ class App extends Component {
     this.fetchEspn();
     this.fetchCNN();
     this.fetchBuzzFeed();
-    // this.fetchCustom();
   }
 
   fetchEspn() {
@@ -45,12 +44,6 @@ class App extends Component {
     .then(data => this.setState({ buzzfeed: data.articles }))
   }
 
-  fetchCustom(data) {
-    fetch(`https://newsapi.org/v1/articles?source=${data}&sortBy=top&apiKey=6c3c0586700d42f186c867bfd45f05e1`)
-    .then(res => res.json())
-    .then(data => console.log(data.articles))
-  }
-
   render() {
     return (
       <div>
@@ -59,7 +52,7 @@ class App extends Component {
         <Route exact path='/espn' render={() => <ESPN espn={this.state.espn} />}/>
         <Route exact path='/cnn' render={() => <CNN cnn={this.state.cnn} />} /> 
         <Route exact path='/buzzfeed' render={() => <Buzzfeed buzzfeed={this.state.buzzfeed} />} />
-        <Route exact path='/other' render={() => <Custom fetch={this.fetchCustom} custom={this.state.news} /> }/>
+        <Route exact path='/other' render={() => <Custom /> }/>
       </div>
     );
   }

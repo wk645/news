@@ -1,31 +1,52 @@
 import React from 'react';
 import { Dropdown } from 'semantic-ui-react';
 import CustomArticle from './CustomArticle' 
+import { Grid } from 'semantic-ui-react';
 
-const Custom = (props) => {
+export default class Custom extends React.Component {
 
-	console.log("in Custom", props)
+	constructor(props) {
+		super(props)
 
-	const newsOptions = [
+		this.state = {
+			custom: []
+		}
+	}
+
+	fetchCustom(data) {
+	    fetch(`https://newsapi.org/v1/articles?source=${data}&sortBy=top&apiKey=6c3c0586700d42f186c867bfd45f05e1`)
+	    .then(res => res.json())
+	    .then(data => this.setState({ custom: data.articles }))
+	}
+
+	newsOptions = [
 		{ key: 'bbc', value: 'bbc-news', text: 'BBC'},
 		{ key: 'bloomberg', value: 'bloomberg', text: 'Bloomberg'},
 		{ key: 'cnbc', value: 'cnbc', text: 'CNBC'},
 		{ key: 'hackerNews', value: 'hacker-news', text: 'HackerNews'}
 	]
 
-	const handleSelect = (event, data) => {
+	handleSelect = (event, data) => {
 		// console.log("value", data.value)
-		props.fetch(data.value)
+		this.fetchCustom(data.value)
 	}
 
-	let news = props.custom.map((info, index) => <CustomArticle key={index} news={info} />)
+	render() {
 
-	return (
+	let news = this.state.custom.map((info, index) => <CustomArticle key={index} news={info} />)
+
+		return (
 		<div>
-			<center><Dropdown placeholder='Select a Source' search selection options={newsOptions} onChange={handleSelect} /></center>
-			{news}
+			<center>
+			<p className="customTitle">CUSTOM</p>
+			<Dropdown placeholder='Select a Source' search selection options={this.newsOptions} onChange={this.handleSelect} />
+				<Grid columns={2}>
+					<Grid.Row>
+						{news}
+					</Grid.Row>
+				</Grid>
+			</center>
 		</div>
-	)
+		)
+	}
 }
-
-export default Custom

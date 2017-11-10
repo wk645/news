@@ -16,7 +16,7 @@ export default class MenuExampleSecondary extends React.Component {
         <Menu.Item as={NavLink} to='/espn' exact name='ESPN' active={activeItem === 'ESPN'} onClick={this.handleItemClick} />
         <Menu.Item as={NavLink} to='/cnn' exact name='CNN' active={activeItem === 'CNN'} onClick={this.handleItemClick} />
         <Menu.Item as={NavLink} to='/buzzfeed' exact name='Buzzfeed' active={activeItem === 'Buzzfeed'} onClick={this.handleItemClick} />
-        <Menu.Item as={NavLink} to='/other' exact name='Add' active={activeItem === 'Add'} onClick={this.handleItemClick} />
+        <Menu.Item as={NavLink} to='/other' exact name='Other' active={activeItem === 'Other'} onClick={this.handleItemClick} />
       </Menu>
     )
   }

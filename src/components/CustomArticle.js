@@ -1,4 +1,5 @@
 import React from 'react';
+import { Grid, Segment } from 'semantic-ui-react'; 
 
 const CustomArticle = (props) => {
 
@@ -7,11 +8,14 @@ const CustomArticle = (props) => {
 	}
 
 	return (
-		<div>
-			<p onClick={handleClick}>{props.news.title}</p>
-			<p>{props.news.description}</p>
-			<p>{props.news.urlToImage}</p>
-		</div>
+		<Grid.Column>
+			<Segment color='black'>
+			`<p className='newsTitle' onClick={handleClick}>{props.news.title}</p>
+						<p className='description'>{props.news.description}</p>
+						<img src={props.news.urlToImage} alt='' />
+						<br />`
+			</Segment>
+		</Grid.Column>
 	)
 }
 
