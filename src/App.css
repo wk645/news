@@ -28,7 +28,7 @@ div.ui.segment {
 
 .description {
   text-align: center;
-  padding: 20px;
+  /*padding: 20px;*/
   font-family: 'Alegreya', serif;
   font-size: 18px;
 }
@@ -42,10 +42,6 @@ img {
 .newsTitle:hover {
 	text-decoration: underline;
 }
-
-/*.newsTitle:visited {
-	color: blue;
-}*/
 
 .sourceTitle {
 	text-align: center;
@@ -62,11 +58,31 @@ img {
 
 div.ui.compact.floating.message.homeP {
 	margin-top: 50px;
-	font-size: 15px;
+	font-size: 18px;
 	font-family: 'Alegreya', serif;
 }
 
 div.ui.search.selection.dropdown {
 	margin-top: 0px;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
+}
+
+div.ui.blue.segment {
+	width: 700px;
+}
+
+div.ui.red.segment {
+	width: 700px;
+}
+
+div.ui.black.segment {
+	width: 700px;
+}
+
+div.default.text {
+	font-family: 'Spectral SC', serif;
+}
+
+span.text {
+	font-family: 'Spectral SC', serif;
 }

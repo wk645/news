@@ -4,9 +4,9 @@ import Home from './components/Home';
 import ESPN from './components/espn/Espn'
 import Navbar from './components/Navbar';
 import { Route } from 'react-router-dom';
-import CNN from './components/cnn/Cnn'
-import Buzzfeed from './components/buzzfeed/Buzzfeed'
-import Custom from './components/Custom'
+import CNN from './components/cnn/Cnn';
+import Buzzfeed from './components/buzzfeed/Buzzfeed';
+import Custom from './components/Custom';
 
 class App extends Component {
   constructor() {
