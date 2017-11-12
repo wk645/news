@@ -23,7 +23,9 @@ export default class Custom extends React.Component {
 		{ key: 'bbc', value: 'bbc-news', text: 'BBC'},
 		{ key: 'bloomberg', value: 'bloomberg', text: 'Bloomberg'},
 		{ key: 'cnbc', value: 'cnbc', text: 'CNBC'},
-		{ key: 'hackerNews', value: 'hacker-news', text: 'HackerNews'}
+		{ key: 'google-news', value: 'google-news', text: 'Google News'},
+		{ key: 'hackerNews', value: 'hacker-news', text: 'HackerNews'},
+		{ key: 'time', value: 'time', text: 'Time'}
 	]
 
 	handleSelect = (event, data) => {
@@ -39,7 +41,7 @@ export default class Custom extends React.Component {
 		<div>
 			<center>
 			<p className="customTitle">CUSTOM</p>
-			<Dropdown placeholder='Select a Source' search selection options={this.newsOptions} onChange={this.handleSelect} />
+			<Dropdown placeholder='Select a Source' search selection options={this.newsOptions} onChange={this.handleSelect} scrolling={true} />
 				<Grid columns={2}>
 					<Grid.Row>
 						{news}

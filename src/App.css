@@ -67,22 +67,11 @@ div.ui.search.selection.dropdown {
 	margin-bottom: 20px;
 }
 
-div.ui.blue.segment {
+div.ui.red.segment, div.ui.black.segment, div.ui.blue.segment {
 	width: 700px;
 }
 
-div.ui.red.segment {
-	width: 700px;
-}
-
-div.ui.black.segment {
-	width: 700px;
-}
-
-div.default.text {
+span.text, div.text, div.default.text {
 	font-family: 'Spectral SC', serif;
 }
 
-span.text {
-	font-family: 'Spectral SC', serif;
-}
