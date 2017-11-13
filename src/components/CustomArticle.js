@@ -3,6 +3,8 @@ import { Grid, Segment } from 'semantic-ui-react';
 
 const CustomArticle = (props) => {
 
+	console.log(props.news)
+
 	const handleClick = () => {
 		window.open(`${props.news.url}`)
 	}

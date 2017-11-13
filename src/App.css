@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Spectral+SC');
 @import url('https://fonts.googleapis.com/css?family=Alegreya|Spectral+SC');
 
+body {
+	background-color: '#f9fafc';
+}
+
 .title {
   text-align: center;
   font-size: 50px;
@@ -67,11 +71,13 @@ div.ui.search.selection.dropdown {
 	margin-bottom: 20px;
 }
 
+
 div.ui.red.segment, div.ui.black.segment, div.ui.blue.segment {
 	width: 700px;
+	margin-bottom: 10px;
 }
 
-span.text, div.text, div.default.text {
+span.text, div.text, div.default.text, input.search {
 	font-family: 'Spectral SC', serif;
 }
 

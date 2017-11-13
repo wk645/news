@@ -5,7 +5,7 @@ const Home = () => {
 
 	return (
 		<div>
-			<h1 className="title">Personalized News</h1>
+			<h1 className="title">News Plan</h1>
 			<center><Message floating className="homeP" compact={true}>
 				Apple has a mobile News application that lets users subscribe to various news sources to create a personalized set of news. 
 				<br />

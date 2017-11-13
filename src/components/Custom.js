@@ -23,9 +23,14 @@ export default class Custom extends React.Component {
 		{ key: 'bbc', value: 'bbc-news', text: 'BBC'},
 		{ key: 'bloomberg', value: 'bloomberg', text: 'Bloomberg'},
 		{ key: 'cnbc', value: 'cnbc', text: 'CNBC'},
+		{ key: 'daily-mail', value: 'daily-mail', text: 'Daily Mail'},
 		{ key: 'google-news', value: 'google-news', text: 'Google News'},
-		{ key: 'hackerNews', value: 'hacker-news', text: 'HackerNews'},
-		{ key: 'time', value: 'time', text: 'Time'}
+		{ key: 'hacker-news', value: 'hacker-news', text: 'HackerNews'},
+		{ key: 'national-geographic', value: 'national-geographic', text: 'National Geographic'},
+		{ key: 'new-york-magazine', value: 'new-york-magazine', text: 'New York Magazine'},
+		{ key: 'reddit-r-all', value: 'reddit-r-all', text: 'Reddit'},
+		{ key: 'time', value: 'time', text: 'Time'},
+		{ key: 'usa-today', value: 'usa-today', text: 'USA Today'}
 	]
 
 	handleSelect = (event, data) => {
