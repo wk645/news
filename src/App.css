@@ -7,7 +7,7 @@ body {
 
 .title {
   text-align: center;
-  font-size: 50px;
+  font-size: 80px;
   margin-top: 20px;
   font-family: 'Spectral SC', serif;
 }
@@ -64,6 +64,7 @@ div.ui.compact.floating.message.homeP {
 	margin-top: 50px;
 	font-size: 18px;
 	font-family: 'Alegreya', serif;
+	width: 800px;
 }
 
 div.ui.search.selection.dropdown {
