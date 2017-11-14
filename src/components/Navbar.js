@@ -1,23 +1,33 @@
 import React from 'react';
+import Auth from '../adapters/Auth';
 import { Menu } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 
-export default class MenuExampleSecondary extends React.Component {
-  state = { activeItem: 'home' }
+const Navbar = ({currentUser}) => {
+  const logLinks = (localStorage.getItem('jwt')) ?
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+      <Menu.Menu position='right'>
+        <NavLink className='item nav-item' to='/profile'>{currentUser.username}</NavLink>
+        <NavLink className='item nav-item' activeClassName='' to ='/' onClick={Auth.logOut}>Log Out</NavLink>
+      </Menu.Menu> :
 
-  render() {
-    const { activeItem } = this.state
+      <Menu.Menu position='right'>
+        <NavLink className='item nav-item' to='/signup'>Sign Up</NavLink>
+        <NavLink className='item nav-item' to='/login'>Login</NavLink>
+      </Menu.Menu>
 
-    return (
+  return (
+
       <Menu secondary>
-        <Menu.Item as={NavLink} to='/' exact name='Home' active={activeItem === 'Home'} onClick={this.handleItemClick} />
-        <Menu.Item as={NavLink} to='/espn' exact name='ESPN' active={activeItem === 'ESPN'} onClick={this.handleItemClick} />
-        <Menu.Item as={NavLink} to='/cnn' exact name='CNN' active={activeItem === 'CNN'} onClick={this.handleItemClick} />
-        <Menu.Item as={NavLink} to='/buzzfeed' exact name='Buzzfeed' active={activeItem === 'Buzzfeed'} onClick={this.handleItemClick} />
-        <Menu.Item as={NavLink} to='/other' exact name='Other' active={activeItem === 'Other'} onClick={this.handleItemClick} />
+        <Menu.Item as={NavLink} to='/' exact name='Home' onClick={this.handleItemClick} />
+        <Menu.Item as={NavLink} to='/espn' exact name='ESPN' onClick={this.handleItemClick} />
+        <Menu.Item as={NavLink} to='/cnn' exact name='CNN' onClick={this.handleItemClick} />
+        <Menu.Item as={NavLink} to='/buzzfeed' exact name='Buzzfeed' onClick={this.handleItemClick} />
+        <Menu.Item as={NavLink} to='/other' exact name='Other' onClick={this.handleItemClick} />
+        {logLinks}
       </Menu>
-    )
-  }
+  )
+
 }
+
+export default Navbar

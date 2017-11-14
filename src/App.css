@@ -82,3 +82,18 @@ span.text, div.text, div.default.text, input.search {
 	font-family: 'Spectral SC', serif;
 }
 
+div.field>input {
+	font-family: 'Spectral SC', serif !important;
+}
+
+form.ui.form {
+	width: 400px;
+	margin: 0 auto;
+	margin-top: 100px;
+}
+
+button.ui.button.signUp, button.ui.button.loginButton {
+	margin-left: 150px;
+	margin-top: 10px;
+	font-family: 'Spectral SC', serif;
+}

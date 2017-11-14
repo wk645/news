@@ -3,10 +3,13 @@ import './App.css';
 import Home from './components/Home';
 import ESPN from './components/espn/Espn'
 import Navbar from './components/Navbar';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import CNN from './components/cnn/Cnn';
 import Buzzfeed from './components/buzzfeed/Buzzfeed';
 import Custom from './components/Custom';
+import Auth from './adapters/Auth';
+import Login from './components/Login';
+import SignUp from './components/SignUp';
 
 class App extends Component {
   constructor() {
@@ -16,14 +19,23 @@ class App extends Component {
       espn: [],
       cnn: [],
       buzzfeed: [],
-      news: []
+      news: [],
+      currentUser: {}
     }
   }
 
   componentDidMount() {
+    this.checkUser();
     this.fetchEspn();
     this.fetchCNN();
     this.fetchBuzzFeed();
+  }
+
+  checkUser() {
+    if (localStorage.getItem('jwt')) {
+      return Auth.userInfo()
+      .then(json => this.setState({ currentUser: json.user }))
+    }
   }
 
   fetchEspn() {
@@ -44,15 +56,47 @@ class App extends Component {
     .then(data => this.setState({ buzzfeed: data.articles }))
   }
 
+  signUpUser = (userParams) => {
+    return Auth.signup(userParams)
+    .then(res => {
+      if (res.success) {
+        localStorage.setItem('jwt', res.jwt)
+        this.setState({ currentUser: res.user })
+      } else {
+        return res
+      }
+    })
+  }
+
+  loginUser = (userParams) => {
+    return Auth.login(userParams)
+    .then(res => {
+      if (res.message) {
+        return res
+      } else {
+        localStorage.setItem('jwt', res.jwt)
+        this.setState({ currentUser: res.user })
+      }
+    })
+  }
+
+  checkLoggedIn = (target) => {
+    return localStorage.getItem('jwt') ? (<Redirect to='/' />) : ( 
+      target
+     )
+  }
+
   render() {
     return (
       <div>
-        <Navbar />
+        <Navbar currentUser={this.state.currentUser} />
         <Route exact path='/' component={Home} />
         <Route exact path='/espn' render={() => <ESPN espn={this.state.espn} />}/>
         <Route exact path='/cnn' render={() => <CNN cnn={this.state.cnn} />} /> 
         <Route exact path='/buzzfeed' render={() => <Buzzfeed buzzfeed={this.state.buzzfeed} />} />
         <Route exact path='/other' render={() => <Custom /> }/>
+        <Route exact path='/login' render={() => this.checkLoggedIn(<Login loginUser={this.loginUser} />)} />
+        <Route exact path='/signup' render={() => this.checkLoggedIn(<SignUp signUpUser={this.signUpUser} />)} /> 
       </div>
     );
   }
