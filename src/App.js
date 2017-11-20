@@ -10,6 +10,7 @@ import Custom from './components/Custom';
 import Auth from './adapters/Auth';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
+import Profile from './components/Profile'
 
 class App extends Component {
   constructor() {
@@ -97,6 +98,7 @@ class App extends Component {
         <Route exact path='/other' render={() => <Custom /> }/>
         <Route exact path='/login' render={() => this.checkLoggedIn(<Login loginUser={this.loginUser} />)} />
         <Route exact path='/signup' render={() => this.checkLoggedIn(<SignUp signUpUser={this.signUpUser} />)} /> 
+        <Route exact path='/profile' render={() => <Profile user={this.state.currentUser} />} />
       </div>
     );
   }

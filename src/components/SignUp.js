@@ -23,6 +23,9 @@ export default class SignUp extends React.Component {
 
 	render() {
 		return (
+		<div>
+		<h1 className='sourceTitle'>Sign Up</h1>
+
 			<Form onSubmit={this.handleSubmit}>
 				<Form.Field>
 					<input type='text' name='fullname' onChange={this.handleChange} placeholder='full name' />
@@ -34,10 +37,11 @@ export default class SignUp extends React.Component {
 					<input type='text' name='username' onChange={this.handleChange} placeholder='username' />
 				</Form.Field>
 				<Form.Field>
-					<input type='text' name='password' onChange={this.handleChange} placeholder='password' />
+					<input type='password' name='password' onChange={this.handleChange} placeholder='password' />
 				</Form.Field>
 				<Button className='signUp' type='submit'>Sign Up</Button>
 			</Form>
+		</div>
 
 		)
 	}

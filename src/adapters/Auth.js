@@ -38,6 +38,7 @@ class Auth {
 	}
 
 	static userInfo() {
+		
 		const jwtToken = localStorage.getItem('jwt')
 		return fetch('http://localhost:3000/api/v1/users/userInfo', {
 			headers: {
