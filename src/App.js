@@ -88,6 +88,7 @@ class App extends Component {
   }
 
   render() {
+    
     return (
       <div>
         <Navbar currentUser={this.state.currentUser} />
