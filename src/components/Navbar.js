@@ -10,7 +10,7 @@ const Navbar = (props) => {
   const logLinks = props.authenticated ?
 
       <Menu.Menu position='right'>
-        <NavLink className='item nav-item' to='/profile'>USERNAME</NavLink>
+        <NavLink className='item nav-item' to='/profile'>{props.currentUser}</NavLink>
         <NavLink className='item nav-item' activeClassName='' to ='/' onClick={Auth.logOut}>Log Out</NavLink>
       </Menu.Menu> :
 

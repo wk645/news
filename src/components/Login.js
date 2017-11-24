@@ -1,16 +1,20 @@
 import React from 'react';
 import { Form, Button } from 'semantic-ui-react';
+import { Redirect } from 'react-router-dom';
+// import { Toaster, Intent } from '@blueprintjs/core';
+import { app, facebookProvider } from '../base';
 
 export default class SignUp extends React.Component {
 
 	state = {
 		username: "",
-		password: ""
+		password: "",
+		redirect: false
 	}
 
 	handleSubmit = (event) => {
 		event.preventDefault();
-		console.log("email")
+		// console.log("email")
 	}
 
 	handleChange = (event) => {
@@ -19,10 +23,22 @@ export default class SignUp extends React.Component {
 	}
 
 	authWithFacebook = () => {
-		console.log("authorized")
+		app.auth().signInWithPopup(facebookProvider)
+		.then((result, error) => {
+			if (error) {
+				alert("Unable to login with FB!")
+			} else {
+				this.setState({ redirect: true })
+			}
+		})
 	}
 
 	render() {
+
+		if (this.state.redirect === true) {
+			return <Redirect to='/' />
+		}
+
 		return (
 		<div>
 		<h1 className='sourceTitle'>

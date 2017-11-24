@@ -3,14 +3,15 @@ import './App.css';
 import Home from './components/Home';
 import ESPN from './components/espn/Espn'
 import Navbar from './components/Navbar';
-import { Route, Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import CNN from './components/cnn/Cnn';
 import Buzzfeed from './components/buzzfeed/Buzzfeed';
 import Custom from './components/Custom';
 // import Auth from './adapters/Auth';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
-import Profile from './components/Profile'
+import Profile from './components/Profile';
+import { app } from './base';
 
 class App extends Component {
   constructor() {
@@ -33,12 +34,22 @@ class App extends Component {
     // this.fetchBuzzFeed();
   }
 
-  // checkUser() {
-  //   if (localStorage.getItem('jwt')) {
-  //     Auth.userInfo()
-  //     .then(json => this.setState({ currentUser: json.user }))
-  //   }
-  // }
+  componentWillMount() {
+    this.removeAuthListener = app.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ 
+          authenticated: true,
+          currentUser: user.displayName
+        })
+      } else {
+        this.setState({ authenticated: false })
+      }
+    })
+  }
+
+  componentWillUnmount() {
+    this.removeAuthListener();
+  }
 
   fetchEspn() {
     fetch('https://newsapi.org/v1/articles?source=espn&sortBy=top&apiKey=6c3c0586700d42f186c867bfd45f05e1')
@@ -97,7 +108,7 @@ class App extends Component {
     
     return (
       <div>
-        <Navbar authenticated={this.state.authenticated} />
+        <Navbar authenticated={this.state.authenticated} currentUser={this.state.currentUser} />
         <Route exact path='/' component={Home} />
         <Route exact path='/espn' render={() => <ESPN espn={this.state.espn} />}/>
         <Route exact path='/cnn' render={() => <CNN cnn={this.state.cnn} />} /> 

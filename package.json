@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "firebase": "^4.6.2",
+    "re-base": "^3.2.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-router": "^4.2.0",
@@ -10,7 +12,8 @@
     "react-scripts": "1.0.17",
     "react-scroll-up-button": "^1.5.10",
     "semantic-ui-css": "^2.2.12",
-    "semantic-ui-react": "^0.76.0"
+    "semantic-ui-react": "^0.76.0",
+    "webpack": "^1.13.1"
   },
   "scripts": {
     "start": "react-scripts start",
