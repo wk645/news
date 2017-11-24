@@ -15,6 +15,15 @@ body {
 div.ui.secondary.menu {
 	font-family: 'Spectral SC', serif;
 	font-size: 15px;
+	background-color: #c13232;
+}
+
+.ui.secondary.menu .item, .active.item {
+	color: white !important;
+}
+
+div.active.selected.item {
+	color: black !important;
 }
 
 .newsTitle {
@@ -80,6 +89,10 @@ div.ui.red.segment, div.ui.black.segment, div.ui.blue.segment {
 
 span.text, div.text, div.default.text, input.search {
 	font-family: 'Spectral SC', serif;
+}
+
+div.default.text {
+	color: black !important;
 }
 
 div.field>input {

@@ -12,6 +12,7 @@ import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Profile from './components/Profile';
 import { app } from './base';
+import { Dimmer, Loader, Segment } from 'semantic-ui-react';
 
 class App extends Component {
   constructor() {
@@ -23,12 +24,12 @@ class App extends Component {
       buzzfeed: [],
       news: [],
       currentUser: {},
-      authenticated: false
+      authenticated: false,
+      loading: true
     }
   }
 
   componentDidMount() {
-    // this.checkUser();
     // this.fetchEspn();
     // this.fetchCNN();
     // this.fetchBuzzFeed();
@@ -39,10 +40,15 @@ class App extends Component {
       if (user) {
         this.setState({ 
           authenticated: true,
-          currentUser: user.displayName
+          currentUser: user.displayName,
+          loading: false
         })
+        console.log(user)
       } else {
-        this.setState({ authenticated: false })
+        this.setState({ 
+          authenticated: false,
+          loading: false
+       })
       }
     })
   }
@@ -69,43 +75,17 @@ class App extends Component {
     .then(data => this.setState({ buzzfeed: data.articles }))
   }
 
-  // signUpUser = (userParams) => {
-  //   return Auth.signup(userParams)
-  //   .then(res => {
-  //     if (res.success) {
-  //       localStorage.setItem('jwt', res.jwt)
-  //       this.setState({ currentUser: res.user })
-  //     } else {
-  //       return res
-  //     }
-  //   })
-  // }
-
-  // loginUser = (userParams) => {
-  //   return Auth.login(userParams)
-  //   .then(res => {
-  //     if (res.message) {
-  //       return res
-  //     } else {
-  //       localStorage.setItem('jwt', res.jwt)
-  //       this.setState({ currentUser: res.user })
-  //     }
-  //   })
-  // }
-
-  // checkLoggedIn = (target) => {
-  //   return localStorage.getItem('jwt') ? (
-  //     <Redirect to='/' />
-  //     ) : ( 
-  //     target
-  //    )
-  // }
-
   render() {
+    if (this.state.loading === true) {
+      return (
+        <Segment>
+          <Dimmer active>
+            <Loader>Loading</Loader>
+          </Dimmer>
+        </Segment>
+      )
+    }
 
-    // console.log("object in app", this.state.currentUser)
-    // console.log("jwt token in app", localStorage.getItem('jwt'))
-    
     return (
       <div>
         <Navbar authenticated={this.state.authenticated} currentUser={this.state.currentUser} />

@@ -10,10 +10,10 @@ const CustomArticle = (props) => {
 	return (
 		<Grid.Column>
 			<Segment color='black'>
-			`<p className='newsTitle' onClick={handleClick}>{props.news.title}</p>
+			<p className='newsTitle' onClick={handleClick}>{props.news.title}</p>
 						<p className='description'>{props.news.description}</p>
 						<img src={props.news.urlToImage} alt='' />
-						<br />`
+						<br />
 			</Segment>
 		</Grid.Column>
 	)
