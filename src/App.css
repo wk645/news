@@ -97,3 +97,7 @@ button.ui.button.signUp, button.ui.button.loginButton {
 	margin-top: 10px;
 	font-family: 'Spectral SC', serif;
 }
+
+.FBLogin {
+	margin-left: 88px;
+}

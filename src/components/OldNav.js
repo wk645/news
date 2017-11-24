@@ -3,11 +3,11 @@ import Auth from '../adapters/Auth';
 import { Menu } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 
-const Navbar = (props) => {
+const Navbar = ({currentUser}) => {
 
-  // console.log("object in navbar", currentUser)
+  console.log("object in navbar", currentUser)
 
-  const logLinks = props.authenticated ?
+  const logLinks = (localStorage.getItem('jwt')) ?
 
       <Menu.Menu position='right'>
         <NavLink className='item nav-item' to='/profile'>USERNAME</NavLink>

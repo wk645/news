@@ -7,7 +7,7 @@ import { Route, Redirect } from 'react-router-dom';
 import CNN from './components/cnn/Cnn';
 import Buzzfeed from './components/buzzfeed/Buzzfeed';
 import Custom from './components/Custom';
-import Auth from './adapters/Auth';
+// import Auth from './adapters/Auth';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Profile from './components/Profile'
@@ -21,23 +21,24 @@ class App extends Component {
       cnn: [],
       buzzfeed: [],
       news: [],
-      currentUser: {}
+      currentUser: {},
+      authenticated: false
     }
   }
 
   componentDidMount() {
-    this.checkUser();
-    this.fetchEspn();
-    this.fetchCNN();
-    this.fetchBuzzFeed();
+    // this.checkUser();
+    // this.fetchEspn();
+    // this.fetchCNN();
+    // this.fetchBuzzFeed();
   }
 
-  checkUser() {
-    if (localStorage.getItem('jwt')) {
-      return Auth.userInfo()
-      .then(json => this.setState({ currentUser: json.user }))
-    }
-  }
+  // checkUser() {
+  //   if (localStorage.getItem('jwt')) {
+  //     Auth.userInfo()
+  //     .then(json => this.setState({ currentUser: json.user }))
+  //   }
+  // }
 
   fetchEspn() {
     fetch('https://newsapi.org/v1/articles?source=espn&sortBy=top&apiKey=6c3c0586700d42f186c867bfd45f05e1')
@@ -57,48 +58,53 @@ class App extends Component {
     .then(data => this.setState({ buzzfeed: data.articles }))
   }
 
-  signUpUser = (userParams) => {
-    return Auth.signup(userParams)
-    .then(res => {
-      if (res.success) {
-        localStorage.setItem('jwt', res.jwt)
-        this.setState({ currentUser: res.user })
-      } else {
-        return res
-      }
-    })
-  }
+  // signUpUser = (userParams) => {
+  //   return Auth.signup(userParams)
+  //   .then(res => {
+  //     if (res.success) {
+  //       localStorage.setItem('jwt', res.jwt)
+  //       this.setState({ currentUser: res.user })
+  //     } else {
+  //       return res
+  //     }
+  //   })
+  // }
 
-  loginUser = (userParams) => {
-    return Auth.login(userParams)
-    .then(res => {
-      if (res.message) {
-        return res
-      } else {
-        localStorage.setItem('jwt', res.jwt)
-        this.setState({ currentUser: res.user })
-      }
-    })
-  }
+  // loginUser = (userParams) => {
+  //   return Auth.login(userParams)
+  //   .then(res => {
+  //     if (res.message) {
+  //       return res
+  //     } else {
+  //       localStorage.setItem('jwt', res.jwt)
+  //       this.setState({ currentUser: res.user })
+  //     }
+  //   })
+  // }
 
-  checkLoggedIn = (target) => {
-    return localStorage.getItem('jwt') ? (<Redirect to='/' />) : ( 
-      target
-     )
-  }
+  // checkLoggedIn = (target) => {
+  //   return localStorage.getItem('jwt') ? (
+  //     <Redirect to='/' />
+  //     ) : ( 
+  //     target
+  //    )
+  // }
 
   render() {
+
+    // console.log("object in app", this.state.currentUser)
+    // console.log("jwt token in app", localStorage.getItem('jwt'))
     
     return (
       <div>
-        <Navbar currentUser={this.state.currentUser} />
+        <Navbar authenticated={this.state.authenticated} />
         <Route exact path='/' component={Home} />
         <Route exact path='/espn' render={() => <ESPN espn={this.state.espn} />}/>
         <Route exact path='/cnn' render={() => <CNN cnn={this.state.cnn} />} /> 
         <Route exact path='/buzzfeed' render={() => <Buzzfeed buzzfeed={this.state.buzzfeed} />} />
         <Route exact path='/other' render={() => <Custom /> }/>
-        <Route exact path='/login' render={() => this.checkLoggedIn(<Login loginUser={this.loginUser} />)} />
-        <Route exact path='/signup' render={() => this.checkLoggedIn(<SignUp signUpUser={this.signUpUser} />)} /> 
+        <Route exact path='/login' component={Login} />
+        <Route exact path='/signup' render={() => <SignUp signUpUser={this.signUpUser} />} /> 
         <Route exact path='/profile' render={() => <Profile user={this.state.currentUser} />} />
       </div>
     );

@@ -10,13 +10,16 @@ export default class SignUp extends React.Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault();
-		this.props.loginUser(this.state);
-
+		console.log("email")
 	}
 
 	handleChange = (event) => {
 		this.setState({[event.target.name]: event.target.value
 		})
+	}
+
+	authWithFacebook = () => {
+		console.log("authorized")
 	}
 
 	render() {
@@ -32,7 +35,9 @@ export default class SignUp extends React.Component {
 					<input type='password' className='loginPassword' name='password' onChange={this.handleChange} placeholder='password' />
 				</Form.Field>
 				<Button className='loginButton' type='submit'>Login</Button>
+				<Button className="loginButton" onClick={this.authWithFacebook}>Log in with Facebook</Button>
 			</Form>
+			
 		</div>
 		)
 	}
