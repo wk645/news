@@ -1,5 +1,4 @@
 import React from 'react';
-import Auth from '../adapters/Auth';
 import { Menu } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 
@@ -11,7 +10,7 @@ const Navbar = (props) => {
 
       <Menu.Menu position='right'>
         <NavLink className='item nav-item' to='/profile'>{props.currentUser}</NavLink>
-        <NavLink className='item nav-item' activeClassName='' to ='/' onClick={Auth.logOut}>Log Out</NavLink>
+        <NavLink className='item nav-item' activeClassName='' to ='/logout'>Log Out</NavLink>
       </Menu.Menu> :
 
       <Menu.Menu position='right'>

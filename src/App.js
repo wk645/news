@@ -7,12 +7,12 @@ import { Route } from 'react-router-dom';
 import CNN from './components/cnn/Cnn';
 import Buzzfeed from './components/buzzfeed/Buzzfeed';
 import Custom from './components/Custom';
-// import Auth from './adapters/Auth';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Profile from './components/Profile';
 import { app } from './base';
 import { Dimmer, Loader, Segment } from 'semantic-ui-react';
+import Logout from './components/Logout';
 
 class App extends Component {
   constructor() {
@@ -95,6 +95,8 @@ class App extends Component {
         <Route exact path='/buzzfeed' render={() => <Buzzfeed buzzfeed={this.state.buzzfeed} />} />
         <Route exact path='/other' render={() => <Custom /> }/>
         <Route exact path='/login' component={Login} />
+        <Route exact path='/logout' component={Logout} />
+
         <Route exact path='/signup' render={() => <SignUp signUpUser={this.signUpUser} />} /> 
         <Route exact path='/profile' render={() => <Profile user={this.state.currentUser} />} />
       </div>
