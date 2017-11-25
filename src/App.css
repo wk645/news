@@ -106,11 +106,14 @@ form.ui.form {
 }
 
 button.ui.button.signUp, button.ui.button.loginButton {
-	margin-left: 150px;
+	margin-left: 88px;
 	margin-top: 10px;
 	font-family: 'Spectral SC', serif;
+	width: 205px;
 }
 
-.FBLogin {
+button.ui.button.FBLogin {
 	margin-left: 88px;
+	margin-top: 10px;
+	font-family: 'Spectral SC', serif;
 }

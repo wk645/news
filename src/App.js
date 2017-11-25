@@ -40,7 +40,7 @@ class App extends Component {
       if (user) {
         this.setState({ 
           authenticated: true,
-          currentUser: user.displayName,
+          currentUser: user,
           loading: false
         })
         console.log(user)
@@ -55,6 +55,20 @@ class App extends Component {
 
   componentWillUnmount() {
     this.removeAuthListener();
+  }
+
+  setCurrentUser(user) {
+    if (user) {
+      this.setState({
+        currentUser: user,
+        authenticated: true
+      })
+    } else {
+      this.setState({
+        currentUser: null,
+        authenticated: false
+      })
+    }
   }
 
   fetchEspn() {
@@ -86,6 +100,8 @@ class App extends Component {
       )
     }
 
+    console.log(this.state.currentUser)
+
     return (
       <div>
         <Navbar authenticated={this.state.authenticated} currentUser={this.state.currentUser} />
@@ -94,7 +110,7 @@ class App extends Component {
         <Route exact path='/cnn' render={() => <CNN cnn={this.state.cnn} />} /> 
         <Route exact path='/buzzfeed' render={() => <Buzzfeed buzzfeed={this.state.buzzfeed} />} />
         <Route exact path='/other' render={() => <Custom /> }/>
-        <Route exact path='/login' component={Login} />
+        <Route exact path='/login' render={(props) => { return <Login setCurrentUser={this.currentUser} {...props} /> }} />
         <Route exact path='/logout' component={Logout} />
 
         <Route exact path='/signup' render={() => <SignUp signUpUser={this.signUpUser} />} /> 

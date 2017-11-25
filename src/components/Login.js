@@ -7,8 +7,6 @@ import { app, facebookProvider } from '../base';
 export default class SignUp extends React.Component {
 
 	state = {
-		username: "",
-		password: "",
 		redirect: false
 	}
 
@@ -33,6 +31,37 @@ export default class SignUp extends React.Component {
 		})
 	}
 
+	authWithEmailPassword(event) {
+		event.preventDefault();
+
+		const email = document.getElementById('emailInput').value
+		const password = document.getElementById('passwordInput').value
+
+		app.auth().fetchProvidersForEmail(email)
+		.then((providers) => {
+			if (providers.length === 0) {
+				// create user
+				return app.auth().createUserWithEmailAndPassword(email, password)
+
+			} else if (providers.indexOf("password") === -1) {
+				// they used facebook
+				alert("Try a different method to log in")
+			} else {
+				// sign in the user
+				return app.auth().signInWithEmailAndPassword(email, password)
+			}
+		})
+		.then((user) => {
+			if (user && user.email) {
+				this.props.setCurrentUser(user)
+				this.setState({ redirect: true })
+			}
+		})
+		.catch((error) => {
+			console.log(error.message)
+		})
+	}
+
 	render() {
 
 		if (this.state.redirect === true) {
@@ -45,12 +74,12 @@ export default class SignUp extends React.Component {
 		Login</h1>
 			<Form onSubmit={this.handleSubmit}>
 				<Form.Field>
-					<input type='text' className='loginName' name='username' onChange={this.handleChange} placeholder='username' />
+					<input type='text' id='emailInput' className='loginName' name='email' onChange={this.handleChange} placeholder='email' />
 				</Form.Field>
 				<Form.Field>
-					<input type='password' className='loginPassword' name='password' onChange={this.handleChange} placeholder='password' />
+					<input type='password' id='passwordInput' className='loginPassword' name='password' onChange={this.handleChange} placeholder='password' />
 				</Form.Field>
-				<Button className='loginButton' type='submit'>Login</Button>
+				<Button className='loginButton' type='submit' onClick={this.authWithEmailPassword}>Login</Button>
 				<Button className="loginButton" onClick={this.authWithFacebook}>Log in with Facebook</Button>
 			</Form>
 			
