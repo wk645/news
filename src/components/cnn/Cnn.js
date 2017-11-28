@@ -2,20 +2,34 @@ import React from 'react';
 import CnnArticle from './CnnArticle';
 import { Grid } from 'semantic-ui-react'
 
-const CNN = (props) => {
+export default class CNN extends React.Component {
+	constructor() {
+		super()
 
-	let news = props.cnn.map((info, index) => <CnnArticle news={info} key={index} />)
+		this.state = {
+			cnn: []
+		}
+	}
 
-	return (
-		<center><div>
-			<p className="sourceTitle">CNN</p>
-			<Grid columns={2}>
-				<Grid.Row>
-						{news}
-				</Grid.Row>
-			</Grid>
-		</div></center>
-	)
+	componentDidMount() {
+	    fetch('https://newsapi.org/v1/articles?source=cnn&sortBy=top&apiKey=6c3c0586700d42f186c867bfd45f05e1')
+	    .then(res => res.json())
+	    .then(data => this.setState({ cnn: data.articles }))
+  	}
+
+  	render() {
+	
+	let news = this.state.cnn.map((info, index) => <CnnArticle news={info} key={index} />)
+  	
+  		return (
+			<center><div>
+				<p className="sourceTitle">CNN</p>
+				<Grid columns={2}>
+					<Grid.Row>
+							{news}
+					</Grid.Row>
+				</Grid>
+			</div></center>
+		)
+  	}
 }
-
-export default CNN

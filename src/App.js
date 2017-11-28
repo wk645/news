@@ -19,20 +19,10 @@ class App extends Component {
     super()
 
     this.state = {
-      espn: [],
-      cnn: [],
-      buzzfeed: [],
-      news: [],
       currentUser: {},
       authenticated: false,
       loading: true
     }
-  }
-
-  componentDidMount() {
-    // this.fetchEspn();
-    // this.fetchCNN();
-    // this.fetchBuzzFeed();
   }
 
   componentWillMount() {
@@ -70,24 +60,6 @@ class App extends Component {
     }
   }
 
-  // fetchEspn() {
-  //   fetch('https://newsapi.org/v1/articles?source=espn&sortBy=top&apiKey=6c3c0586700d42f186c867bfd45f05e1')
-  //   .then(res => res.json())
-  //   .then(data => this.setState({ espn: data.articles })
-  // )}
-
-  // fetchCNN() {
-  //   fetch('https://newsapi.org/v1/articles?source=cnn&sortBy=top&apiKey=6c3c0586700d42f186c867bfd45f05e1')
-  //   .then(res => res.json())
-  //   .then(data => this.setState({ cnn: data.articles }))
-  // }
-
-  // fetchBuzzFeed() {
-  //   fetch('https://newsapi.org/v1/articles?source=buzzfeed&sortBy=top&apiKey=6c3c0586700d42f186c867bfd45f05e1')
-  //   .then(res => res.json())
-  //   .then(data => this.setState({ buzzfeed: data.articles }))
-  // }
-
   render() {
     if (this.state.loading === true) {
       return (
@@ -107,7 +79,7 @@ class App extends Component {
         <Route exact path='/' component={Home} />
         <Route exact path='/espn' render={() => <ESPN espn={this.state.espn} />}/>
         <Route exact path='/cnn' render={() => <CNN cnn={this.state.cnn} />} /> 
-        <Route exact path='/buzzfeed' render={() => <Buzzfeed buzzfeed={this.state.buzzfeed} />} />
+        <Route exact path='/buzzfeed' component={Buzzfeed} />
         <Route exact path='/other' render={() => <Custom /> }/>
         <Route exact path='/login' render={(props) => { return <Login setCurrentUser={this.setCurrentUser} {...props} /> }} />
         <Route exact path='/logout' component={Logout} />

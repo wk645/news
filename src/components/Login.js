@@ -5,8 +5,12 @@ import { app, facebookProvider } from '../base';
 
 export default class SignUp extends React.Component {
 
-	state = {
-		redirect: false
+	constructor(props) {
+		super(props)
+
+		this.state = {
+			redirect: false,
+		}
 	}
 
 	handleSubmit = (event) => {
@@ -52,12 +56,10 @@ export default class SignUp extends React.Component {
 			}
 		})
 		.then((user) => {
-			debugger
+			console.log("user info", user)
 			if (user && user.email) {
 				this.props.setCurrentUser(user)
 				this.setState({ redirect: true })
-
-				console.log(this.state.redirect)
 			}
 		})
 		.catch((error) => {
@@ -66,6 +68,8 @@ export default class SignUp extends React.Component {
 	}
 
 	render() {
+
+		console.log("props in Login", this.props.setCurrentUser)
 
 		if (this.state.redirect === true) {
 			return <Redirect to='/' />
