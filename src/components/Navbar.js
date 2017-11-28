@@ -8,6 +8,8 @@ const Navbar = (props) => {
 
   let name = props.currentUser ? props.currentUser.displayName : props.currentUser.email
 
+  console.log("user in Nav", props.currentUser)
+
   const logLinks = props.authenticated ?
 
       <Menu.Menu position='right'>

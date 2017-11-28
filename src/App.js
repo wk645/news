@@ -19,7 +19,7 @@ class App extends Component {
     super()
 
     this.state = {
-      currentUser: {},
+      currentUser: null,
       authenticated: false,
       loading: true
     }
@@ -46,7 +46,7 @@ class App extends Component {
     this.removeAuthListener();
   }
 
-  setCurrentUser(user) {
+  setCurrentUser = (user) => {
     if (user) {
       this.setState({
         currentUser: user,
@@ -71,7 +71,7 @@ class App extends Component {
       )
     }
 
-    console.log("current user", this.state.currentUser)
+    console.log("user in App", this.state.currentUser)
 
     return (
       <div>
@@ -81,7 +81,7 @@ class App extends Component {
         <Route exact path='/cnn' render={() => <CNN cnn={this.state.cnn} />} /> 
         <Route exact path='/buzzfeed' component={Buzzfeed} />
         <Route exact path='/other' render={() => <Custom /> }/>
-        <Route exact path='/login' render={(props) => { return <Login setCurrentUser={this.setCurrentUser} {...props} /> }} />
+        <Route exact path='/login' render={() => <Login setCurrentUser={this.setCurrentUser} /> } />
         <Route exact path='/logout' component={Logout} />
 
         <Route exact path='/profile' render={() => <Profile user={this.state.currentUser} />} />

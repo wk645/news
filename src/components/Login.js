@@ -27,7 +27,7 @@ export default class SignUp extends React.Component {
 		app.auth().signInWithPopup(facebookProvider)
 		.then((user, error) => {
 			if (error) {
-				alert("Unable to login with FB!")
+				console.log("Unable to login with FB!")
 			} else {
 				this.props.setCurrentUser(user)
 				this.setState({ redirect: true })
@@ -35,7 +35,7 @@ export default class SignUp extends React.Component {
 		})
 	}
 
-	authWithEmailPassword(event) {
+	authWithEmailPassword = (event) => {
 		event.preventDefault();
 
 		let email = document.getElementById('emailInput').value
@@ -52,24 +52,23 @@ export default class SignUp extends React.Component {
 				alert("Try a different method to log in")
 			} else {
 				// sign in the user
+				console.log("success")
 				return app.auth().signInWithEmailAndPassword(email, password)
+
 			}
 		})
 		.then((user) => {
-			console.log("user info", user)
 			if (user && user.email) {
 				this.props.setCurrentUser(user)
 				this.setState({ redirect: true })
 			}
 		})
 		.catch((error) => {
-			alert(error.message)
+			console.log(error.message)
 		})
 	}
 
 	render() {
-
-		console.log("props in Login", this.props.setCurrentUser)
 
 		if (this.state.redirect === true) {
 			return <Redirect to='/' />
