@@ -8,7 +8,7 @@ import CNN from './components/cnn/Cnn';
 import Buzzfeed from './components/buzzfeed/Buzzfeed';
 import Custom from './components/Custom';
 import Login from './components/Login';
-import SignUp from './components/SignUp';
+// import SignUp from './components/SignUp';
 import Profile from './components/Profile';
 import { app } from './base';
 import { Dimmer, Loader, Segment } from 'semantic-ui-react';
@@ -43,7 +43,6 @@ class App extends Component {
           currentUser: user,
           loading: false
         })
-        console.log(user)
       } else {
         this.setState({ 
           authenticated: false,
@@ -71,23 +70,23 @@ class App extends Component {
     }
   }
 
-  fetchEspn() {
-    fetch('https://newsapi.org/v1/articles?source=espn&sortBy=top&apiKey=6c3c0586700d42f186c867bfd45f05e1')
-    .then(res => res.json())
-    .then(data => this.setState({ espn: data.articles })
-  )}
+  // fetchEspn() {
+  //   fetch('https://newsapi.org/v1/articles?source=espn&sortBy=top&apiKey=6c3c0586700d42f186c867bfd45f05e1')
+  //   .then(res => res.json())
+  //   .then(data => this.setState({ espn: data.articles })
+  // )}
 
-  fetchCNN() {
-    fetch('https://newsapi.org/v1/articles?source=cnn&sortBy=top&apiKey=6c3c0586700d42f186c867bfd45f05e1')
-    .then(res => res.json())
-    .then(data => this.setState({ cnn: data.articles }))
-  }
+  // fetchCNN() {
+  //   fetch('https://newsapi.org/v1/articles?source=cnn&sortBy=top&apiKey=6c3c0586700d42f186c867bfd45f05e1')
+  //   .then(res => res.json())
+  //   .then(data => this.setState({ cnn: data.articles }))
+  // }
 
-  fetchBuzzFeed() {
-    fetch('https://newsapi.org/v1/articles?source=buzzfeed&sortBy=top&apiKey=6c3c0586700d42f186c867bfd45f05e1')
-    .then(res => res.json())
-    .then(data => this.setState({ buzzfeed: data.articles }))
-  }
+  // fetchBuzzFeed() {
+  //   fetch('https://newsapi.org/v1/articles?source=buzzfeed&sortBy=top&apiKey=6c3c0586700d42f186c867bfd45f05e1')
+  //   .then(res => res.json())
+  //   .then(data => this.setState({ buzzfeed: data.articles }))
+  // }
 
   render() {
     if (this.state.loading === true) {
@@ -100,7 +99,7 @@ class App extends Component {
       )
     }
 
-    console.log(this.state.currentUser)
+    console.log("current user", this.state.currentUser)
 
     return (
       <div>
@@ -110,14 +109,14 @@ class App extends Component {
         <Route exact path='/cnn' render={() => <CNN cnn={this.state.cnn} />} /> 
         <Route exact path='/buzzfeed' render={() => <Buzzfeed buzzfeed={this.state.buzzfeed} />} />
         <Route exact path='/other' render={() => <Custom /> }/>
-        <Route exact path='/login' render={(props) => { return <Login setCurrentUser={this.currentUser} {...props} /> }} />
+        <Route exact path='/login' render={(props) => { return <Login setCurrentUser={this.setCurrentUser} {...props} /> }} />
         <Route exact path='/logout' component={Logout} />
 
-        <Route exact path='/signup' render={() => <SignUp signUpUser={this.signUpUser} />} /> 
         <Route exact path='/profile' render={() => <Profile user={this.state.currentUser} />} />
       </div>
     );
   }
 }
+        // <Route exact path='/signup' render={() => <SignUp signUpUser={this.signUpUser} />} /> 
 
 export default App;

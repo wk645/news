@@ -1,7 +1,6 @@
 import React from 'react';
 import { Form, Button } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
-// import { Toaster, Intent } from '@blueprintjs/core';
 import { app, facebookProvider } from '../base';
 
 export default class SignUp extends React.Component {
@@ -22,10 +21,11 @@ export default class SignUp extends React.Component {
 
 	authWithFacebook = () => {
 		app.auth().signInWithPopup(facebookProvider)
-		.then((result, error) => {
+		.then((user, error) => {
 			if (error) {
 				alert("Unable to login with FB!")
 			} else {
+				this.props.setCurrentUser(user)
 				this.setState({ redirect: true })
 			}
 		})
@@ -34,8 +34,8 @@ export default class SignUp extends React.Component {
 	authWithEmailPassword(event) {
 		event.preventDefault();
 
-		const email = document.getElementById('emailInput').value
-		const password = document.getElementById('passwordInput').value
+		let email = document.getElementById('emailInput').value
+		let password = document.getElementById('passwordInput').value
 
 		app.auth().fetchProvidersForEmail(email)
 		.then((providers) => {
@@ -52,13 +52,16 @@ export default class SignUp extends React.Component {
 			}
 		})
 		.then((user) => {
+			debugger
 			if (user && user.email) {
 				this.props.setCurrentUser(user)
 				this.setState({ redirect: true })
+
+				console.log(this.state.redirect)
 			}
 		})
 		.catch((error) => {
-			console.log(error.message)
+			alert(error.message)
 		})
 	}
 

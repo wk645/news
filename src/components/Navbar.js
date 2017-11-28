@@ -6,16 +6,17 @@ const Navbar = (props) => {
 
   // console.log("object in navbar", currentUser)
 
+  let name = props.currentUser ? props.currentUser.displayName : props.currentUser.email
+
   const logLinks = props.authenticated ?
 
       <Menu.Menu position='right'>
-        <NavLink className='item nav-item' to='/profile'>{props.currentUser.displayName}</NavLink>
+        <NavLink className='item nav-item' to='/profile'>{name}</NavLink>
         <NavLink className='item nav-item' activeClassName='' to ='/logout'>Log Out</NavLink>
       </Menu.Menu> :
 
       <Menu.Menu position='right'>
-        <NavLink className='item nav-item' to='/signup'>Sign Up</NavLink>
-        <NavLink className='item nav-item' to='/login'>Login</NavLink>
+        <NavLink className='item nav-item' to='/login'>Register/Login</NavLink>
       </Menu.Menu>
 
   return (
