@@ -4,8 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 const Navbar = (props) => {
 
-  let name = props.currentUser.displayName
-  name = (name === null ? name = props.currentUser.email : name = props.currentUser.displayName)
+  let name = props.currentUser.displayName ? props.currentUser.displayName : props.currentUser.email
 
   const logLinks = props.authenticated ?
 

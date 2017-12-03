@@ -52,7 +52,7 @@ export default class SignUp extends React.Component {
 				alert("Try a different method to log in")
 			} else {
 				// sign in the user
-				console.log("success")
+				// console.log("success")
 				return app.auth().signInWithEmailAndPassword(email, password)
 
 			}
