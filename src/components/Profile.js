@@ -16,6 +16,10 @@ export default class Profile extends React.Component {
 		return (
 			<div>
 			<h1 className='sourceTitle'>Profile</h1>
+
+			<div className='savedNewsContainer'>
+				<p><u>Saved News</u></p>
+			</div>
 			</div>
 		)
 	}

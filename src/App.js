@@ -8,11 +8,11 @@ import CNN from './components/cnn/Cnn';
 import Buzzfeed from './components/buzzfeed/Buzzfeed';
 import Custom from './components/Custom';
 import Login from './components/Login';
-// import SignUp from './components/SignUp';
 import Profile from './components/Profile';
 import { app } from './base';
 import { Dimmer, Loader, Segment } from 'semantic-ui-react';
 import Logout from './components/Logout';
+import AlertContainer from 'react-alert';
 
 class App extends Component {
   constructor() {
@@ -23,6 +23,14 @@ class App extends Component {
       authenticated: false,
       loading: true
     }
+  }
+
+  alertOptions = {
+    offset: 14,
+    position: 'top left',
+    theme: 'dark',
+    time: 3000,
+    transition: 'fade'
   }
 
   componentWillMount() {
@@ -71,11 +79,12 @@ class App extends Component {
       )
     }
 
-    console.log("user in App", this.state.currentUser)
+    // console.log("user in App", this.state.currentUser)
 
     return (
       <div>
         <Navbar authenticated={this.state.authenticated} currentUser={this.state.currentUser} />
+        <AlertContainer ref={a => this.msg = a} {...this.alertOptions} />
         <Route exact path='/' component={Home} />
         <Route exact path='/espn' render={() => <ESPN espn={this.state.espn} />}/>
         <Route exact path='/cnn' render={() => <CNN cnn={this.state.cnn} />} /> 

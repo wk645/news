@@ -4,11 +4,8 @@ import { NavLink } from 'react-router-dom';
 
 const Navbar = (props) => {
 
-  // console.log("object in navbar", currentUser)
-
-  let name = props.currentUser ? props.currentUser.displayName : props.currentUser.email
-
-  console.log("user in Nav", props.currentUser)
+  let name = props.currentUser.displayName
+  name = (name === null ? name = props.currentUser.email : name = props.currentUser.displayName)
 
   const logLinks = props.authenticated ?
 
