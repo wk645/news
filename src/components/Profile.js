@@ -11,7 +11,7 @@ export default class Profile extends React.Component {
 
 	render() {
 
-		// console.log(this.state.user)
+		// console.log("profile", this.state.articles)
 
 		return (
 			<div>

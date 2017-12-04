@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Button } from 'semantic-ui-react';
+import { Form, Button, Message } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
 import { app, facebookProvider } from '../base';
 
@@ -78,6 +78,13 @@ export default class SignUp extends React.Component {
 		<div>
 		<h1 className='sourceTitle'>
 		Login</h1>
+
+		<center><Message floating className="homeP" compact={true}>
+
+			Login using your e-mail or Facebook account. If you do not have an account at News Plan yet, we will automatically create one for you with your information!
+
+			</Message></center>
+
 			<Form onSubmit={this.handleSubmit}>
 				<Form.Field>
 					<input type='text' id='emailInput' className='loginName' name='email' onChange={this.handleChange} placeholder='email' />

@@ -20,9 +20,9 @@ export default class Buzzfeed extends React.Component {
 
 	render() {
 
-	// console.log("in BF", this.state.buzzfeed)
+	// console.log("in BF", this.props.saveArticle)
 
-	let news = this.state.buzzfeed.map((info, index) => <Article key={index} news={info} /> )
+	let news = this.state.buzzfeed.map((info, index) => <Article key={index} news={info} saveArticle={this.props.saveArticle} /> )
 		
 		return (
 		<center><div>

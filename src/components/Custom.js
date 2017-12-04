@@ -11,7 +11,7 @@ export default class Custom extends React.Component {
 
 		this.state = {
 			custom: [],
-			name: ""
+			articleName: null
 		}
 	}
 
@@ -25,24 +25,26 @@ export default class Custom extends React.Component {
 		this.fetchCustom(data.value)
 	}
 
+	// getName = (name) => {
+	// 	this.setState({
+	// 		articleName: name
+	// 	})
+	// }
+
 	render() {
 
-	console.log(this.state.custom)
 
-	let news = this.state.custom.map((info, index) => <CustomArticle key={index} news={info} />)
+	let news = this.state.custom.map((info, index) => <CustomArticle key={index} news={info} name={info.source.name} cb={this.getName} />)
 
+	// console.log("source name", this.state.name)
 
 	// let sourceName = this.state.custom ? this.state.custom.source.name : null
-
-	// console.log(sourceName)
 
 		return (
 		<div>
 			<center>
 			<p className="customTitle">CUSTOM</p>
 			<Dropdown placeholder='Select a Source' search selection options={newsOptions} onChange={this.handleSelect} scrolling={true} />
-			
-			<p className="CustomSourceTitle">SOURCE NAME</p>
 
 				<Grid columns={2}>
 					<Grid.Row>
