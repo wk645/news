@@ -1,4 +1,5 @@
 import React from 'react';
+import SavedArticles from './SavedArticles';
 
 export default class Profile extends React.Component {
 	constructor(props) {
@@ -11,7 +12,7 @@ export default class Profile extends React.Component {
 
 	render() {
 
-		// console.log("profile", this.state.articles)
+		// console.log("in profile", this.props.articles)
 
 		return (
 			<div>
@@ -19,6 +20,10 @@ export default class Profile extends React.Component {
 
 			<div className='savedNewsContainer'>
 				<p><u>Saved News</u></p>
+
+				<div className="savedNews">
+					<SavedArticles articles={this.props.articles} user={this.props.user} />
+				</div>
 			</div>
 			</div>
 		)
