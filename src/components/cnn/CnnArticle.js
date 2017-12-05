@@ -7,8 +7,9 @@ const CnnArticle = (props) => {
 		window.open(`${props.news.url}`)
 	}
 
-	const handleSave = (event) => {
-		console.log("pass cb f(x) here")
+	const handleSave = () => {
+		console.log("pass cb f(x) here");
+		props.saveArticle(props.news);
 	}
 
 	return (

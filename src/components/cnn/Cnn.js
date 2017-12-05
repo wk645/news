@@ -3,8 +3,8 @@ import CnnArticle from './CnnArticle';
 import { Grid } from 'semantic-ui-react'
 
 export default class CNN extends React.Component {
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 
 		this.state = {
 			cnn: []
@@ -19,7 +19,7 @@ export default class CNN extends React.Component {
 
   	render() {
 	
-	let news = this.state.cnn.map((info, index) => <CnnArticle news={info} key={index} />)
+	let news = this.state.cnn.map((info, index) => <CnnArticle news={info} key={index} saveArticle={this.props.saveArticle} />)
   	
   		return (
 			<center><div>
