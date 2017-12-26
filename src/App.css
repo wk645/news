@@ -117,3 +117,10 @@ button.ui.button.FBLogin {
 	margin-top: 10px;
 	font-family: 'Spectral SC', serif;
 }
+
+.savedNewsContainer>p {
+	font-family: 'Spectral SC', serif;
+    font-size: 40px;
+    margin-top: 100px;
+    margin-left: 10px;
+}

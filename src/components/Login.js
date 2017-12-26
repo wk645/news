@@ -1,13 +1,16 @@
 import React from 'react';
-import { Form, Button } from 'semantic-ui-react';
+import { Form, Button, Message } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
-// import { Toaster, Intent } from '@blueprintjs/core';
 import { app, facebookProvider } from '../base';
 
 export default class SignUp extends React.Component {
 
-	state = {
-		redirect: false
+	constructor(props) {
+		super(props)
+
+		this.state = {
+			redirect: false,
+		}
 	}
 
 	handleSubmit = (event) => {
@@ -22,20 +25,21 @@ export default class SignUp extends React.Component {
 
 	authWithFacebook = () => {
 		app.auth().signInWithPopup(facebookProvider)
-		.then((result, error) => {
+		.then((user, error) => {
 			if (error) {
-				alert("Unable to login with FB!")
+				console.log("Unable to login with FB!")
 			} else {
+				this.props.setCurrentUser(user)
 				this.setState({ redirect: true })
 			}
 		})
 	}
 
-	authWithEmailPassword(event) {
+	authWithEmailPassword = (event) => {
 		event.preventDefault();
 
-		const email = document.getElementById('emailInput').value
-		const password = document.getElementById('passwordInput').value
+		let email = document.getElementById('emailInput').value
+		let password = document.getElementById('passwordInput').value
 
 		app.auth().fetchProvidersForEmail(email)
 		.then((providers) => {
@@ -48,7 +52,9 @@ export default class SignUp extends React.Component {
 				alert("Try a different method to log in")
 			} else {
 				// sign in the user
+				// console.log("success")
 				return app.auth().signInWithEmailAndPassword(email, password)
+
 			}
 		})
 		.then((user) => {
@@ -72,6 +78,13 @@ export default class SignUp extends React.Component {
 		<div>
 		<h1 className='sourceTitle'>
 		Login</h1>
+
+		<center><Message floating className="homeP" compact={true}>
+
+			Login using your e-mail or Facebook account. If you do not have an account at News Plan yet, we will automatically create one for you with your information!
+
+			</Message></center>
+
 			<Form onSubmit={this.handleSubmit}>
 				<Form.Field>
 					<input type='text' id='emailInput' className='loginName' name='email' onChange={this.handleChange} placeholder='email' />

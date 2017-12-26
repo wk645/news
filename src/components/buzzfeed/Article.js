@@ -3,9 +3,16 @@ import { Grid, Segment } from 'semantic-ui-react';
 
 const Article = (props) => {
 
+	// console.log("article", props)
+
 	const handleClick = () => {
 		window.open(`${props.news.url}`)
 	}
+
+	// const handleSave = (event) => {
+	// 	event.preventDefault();
+	// 	props.saveArticle(props.news)
+	// }
 
 	return (
 		<Grid.Column>
@@ -20,3 +27,5 @@ const Article = (props) => {
 }
 
 export default Article
+
+// <Button className="saveButton" onClick={handleSave}>Save</Button>
